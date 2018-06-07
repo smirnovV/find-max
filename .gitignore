@@ -1,6 +1,4 @@
-.gitignore
-.gitattributes
+*.iml
 .idea/
 target/
 out/
-*.iml
