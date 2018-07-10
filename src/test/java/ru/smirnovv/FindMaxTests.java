@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.text.IsEmptyString.isEmptyString;
 import static org.junit.Assert.assertThat;
@@ -31,7 +34,8 @@ public class FindMaxTests {
 
         FindMax.main(input);
 
-        assertThat(systemOutRule.getLog(), containsString("1\r\n3\r\n8\r\n"));
+        assertThat(systemOutRule.getLog(),
+                containsString(Stream.of("1", "3", "8").collect(Collectors.joining(System.lineSeparator()))));
     }
 
     @Test
@@ -47,6 +51,7 @@ public class FindMaxTests {
 
         FindMax.main(input);
 
-        assertThat(systemOutRule.getLog(), containsString("7\r\n9\r\n10\r\n"));
+        assertThat(systemOutRule.getLog(),
+                containsString(Stream.of("7", "9", "10").collect(Collectors.joining(System.lineSeparator()))));
     }
 }

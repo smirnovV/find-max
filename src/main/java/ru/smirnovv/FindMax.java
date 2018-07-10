@@ -23,6 +23,7 @@ import static ru.smirnovv.MyCollectors.maxN;
 /**
  * Program that finds the given number of maximums reading lines from the standard input.
  */
+@SuppressWarnings("PMD.TooManyStaticImports")
 @Command(description = "Finds the given number of maximums.", name = "find-max",
         mixinStandardHelpOptions = true, versionProvider = FindMax.VersionProvider.class
 )
@@ -69,7 +70,7 @@ class FindMax {
      * @throws IOException if an IO error occurred.
      */
     private void run() throws IOException {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "UTF-8"))) {
             br.lines()
                     .filter(NumberUtils::isDigits)
                     .map(Long::valueOf)
@@ -91,11 +92,11 @@ class FindMax {
                     final String title = manifest.getMainAttributes().getValue("Implementation-Title");
                     final String version = manifest.getMainAttributes().getValue("Implementation-Version");
                     if ("find-max".equals(title) && version != null) {
-                        return new String[] {version};
+                        return new String[]{version};
                     }
                 }
             }
-            return new String[] {"No version"};
+            return new String[]{"No version"};
         }
     }
 }
